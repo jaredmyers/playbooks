@@ -1,0 +1,9 @@
+- name: upgrade rocky linux w/dnf
+  hosts: node1
+  become: yes
+  tasks:
+    - name: dnf upgrade
+      dnf:
+        name: "*"
+        state: latest
+
