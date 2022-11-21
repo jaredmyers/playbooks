@@ -1,0 +1,33 @@
+- name: configure nginx webserver on rockylinux (RHEL)
+  hosts: bigg
+  tasks:
+    - name: install nginx packages
+      yum:
+        name: nginx
+        state: present
+    - name: start nginx service, enable on boot
+      service: 
+        name: nginx
+        state: started
+        enabled: yes
+    - name: added firewall rules
+      firewalld:
+        port: 80/tcp
+        permanent: true
+        state: enabled
+    - name: reload firewall config
+      systemd: 
+        name: firewalld
+        state: reloaded
+    - name: create website www directory
+      file:
+        path: /usr/share/nginx/www
+        state: directory
+    - name: copy index file to nginx directory
+      copy:
+        src: /tmp/index.html
+        dest: /usr/share/nginx/www/
+    - name: restart nginx service
+      service:
+        name: nginx
+        state: restarted

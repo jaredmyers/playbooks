@@ -7,4 +7,4 @@
       lineinfile:
         path: /etc/selinux/config
         regexp: '^SELINUX='
-        line: 'SELINUX={{ status  }}'
+        line: 'SELINUX={{ status }}'
