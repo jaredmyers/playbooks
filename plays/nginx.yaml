@@ -1,5 +1,5 @@
 - name: configure nginx webserver on rockylinux (RHEL)
-  hosts: bigg
+  hosts: node1
   tasks:
     - name: install nginx packages
       yum:
